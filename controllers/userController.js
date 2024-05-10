@@ -4,7 +4,7 @@ const User = require('../models/User');
 
 const register = async (req, res) => {
     try {
-        const { username, email, password, userType } = req.body;
+        const { username, email, password, userType, isAdmin } = req.body;
 
         // Check if user already exists
         let user = await User.findOne({ email });
@@ -18,7 +18,8 @@ const register = async (req, res) => {
             username,
             email,
             password: hashedPassword,
-            userType
+            userType,
+            isAdmin, // Add isAdmin field
         });
 
         // If the user is an artisan or farmer, add the location to the user object
@@ -42,7 +43,6 @@ const register = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
-
 
 const login = async (req, res) => {
     try {
@@ -71,7 +71,4 @@ const login = async (req, res) => {
     }
 };
 
-
-
-
-module.exports = { register, login};
+module.exports = { register, login };

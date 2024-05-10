@@ -30,6 +30,11 @@ const userSchema = new mongoose.Schema({
             return this.userType === 'artisan' || this.userType === 'farmer';
         }
     },
+    isAdmin: {
+        type: Boolean,
+        type: String,
+        default: false,
+      },
     
 }, { timestamps: true });
 
